@@ -29,7 +29,7 @@ parser.add_argument('-d', '--data',
                     default="unifem-dev-py3.6.1")
 
 parser.add_argument('-p', '--pull', 
-                    help='Pull the latest Docker image. The default is not to pull.',
+                    help='Pull the latest Docker image. If the image already exists, the old one will be deleted automatically. The default is not to pull.',
                     dest='pull', action='store_true')
 
 parser.set_defaults(pull=False)
@@ -120,7 +120,8 @@ if __name__ == "__main__":
 
     pwd = os.getcwd()
 
-    if pull or not subprocess.check_output(['docker', 'images', '-q', image]):
+    img = subprocess.check_output(['docker', 'images', '-q', image])
+    if pull or not img:
         try:
             err = subprocess.call(["docker", "pull", image])
         except BaseException:
@@ -128,6 +129,11 @@ if __name__ == "__main__":
 
         if err:
             sys.exit(err)
+
+        # Delete dangling image
+        if img and subprocess.check_output \
+                (['docker', 'images', '-f', 'dangling=true', '-q']).find(img) >= 0:
+            err = subprocess.call(["docker", "rmi", "-f", img])
 
     # Generate a container ID and find an unused port
     container = id_generator()
