@@ -28,7 +28,7 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 
 RUN curl -O http://www.syntevo.com/static/smart/download/smartgit/smartgit-${SMARTGIT_VER}.deb && \
     dpkg -i smartgit-${SMARTGIT_VER}.deb && \
-    rm /tmp/* /var/tmp/*
+    rm -rf /tmp/* /var/tmp/*
 
 ########################################################
 # Customization for user
