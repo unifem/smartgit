@@ -24,9 +24,11 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
     apt-get install -q -y --no-install-recommends \
            oracle-java8-installer oracle-java8-set-default && \
     apt-get clean && \
-    curl -O http://www.syntevo.com/static/smart/download/smartgit/smartgit-${SMARTGIT_VER}.deb && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -O http://www.syntevo.com/static/smart/download/smartgit/smartgit-${SMARTGIT_VER}.deb && \
     dpkg -i smartgit-${SMARTGIT_VER}.deb && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm /tmp/* /var/tmp/*
 
 ########################################################
 # Customization for user
@@ -38,6 +40,7 @@ RUN usermod -l $UE_USER -d /home/$UE_USER -m $DOCKER_USER && \
     echo "$UE_USER:docker" | chpasswd && \
     echo "$UE_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     sed -i "s/$DOCKER_USER/$UE_USER/" /home/$UE_USER/.config/pcmanfm/LXDE/desktop-items-0.conf && \
+    echo "@/usr/share/smartgit/bin/smartgit.sh" >> /home/$UE_USER/.config/lxsession/LXDE/autostart && \
     chown -R $UE_USER:$UE_USER /home/$UE_USER
 
 ENV DOCKER_USER=$UE_USER \
