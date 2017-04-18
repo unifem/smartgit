@@ -120,7 +120,7 @@ if __name__ == "__main__":
 
     pwd = os.getcwd()
 
-    img = subprocess.check_output(['docker', 'images', '-q', image])
+    img = subprocess.check_output(['docker', 'images', '-q', image])[:-1]
     if pull or not img:
         try:
             err = subprocess.call(["docker", "pull", image])
@@ -162,7 +162,7 @@ if __name__ == "__main__":
                      "-v", pwd + ":/home/" + user + "/shared",
                      "-v", homedir + "/.ssh" + ":/home/" + user + "/.ssh",
                      "-v", homedir + "/.gitconfig" + ":/home/" + user + "/.gitconfig",
-                     "-w", "/home/" + user + "/local/src/dolfin",
+                     "-w", "/home/" + user + "/shared",
                      "-p", "127.0.0.1:" + port_vnc + ":6080",
                      "--env", "RESOLUT=" + get_screen_resolution(),
                      "--env", "HOST_UID=" + uid,
