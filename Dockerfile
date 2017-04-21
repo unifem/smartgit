@@ -13,13 +13,9 @@ WORKDIR /tmp
 ENV SMARTGIT_VER=17_0_3
 
 # Install Java
-RUN add-apt-repository ppa:webupd8team/java -y && \
-    apt-get update && \
-    echo "oracle-java8-installer  shared/accepted-oracle-license-v1-1 boolean true" > \
-          oracle-license-debconf && \
-    /usr/bin/debconf-set-selections oracle-license-debconf && \
+RUN apt-get update && \
     apt-get install -q -y --no-install-recommends \
-           oracle-java8-installer oracle-java8-set-default && \
+        openjdk-8-jre-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
