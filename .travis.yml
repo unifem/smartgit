@@ -28,9 +28,9 @@ script:
   - '[[ "$TRAVIS_EVENT_TYPE" == "push" && -n "$TRAVIS_COMMIT_RANGE" &&
         -z "$(git diff --name-only $TRAVIS_COMMIT_RANGE |
             grep -e Dockerfile -e .travis.yml)" ]] || [[ "$XVFB" != "1" ]] ||
-     (docker build --tag x11vnc/stmartgit-desktop:16.04 --tag x11vnc/stmartgit-desktop:latest . &&
-      docker push x11vnc/stmartgit-desktop &&
+     (docker build --tag x11vnc/smartgit-desktop:16.04 --tag x11vnc/smartgit-desktop:latest . &&
+      docker push x11vnc/smartgit-desktop &&
       touch success)'
   # Test script without launching webbrowser and push new image if successful
-  - './stmartgit_desktop.py -d -n && docker stop $(docker ps -q)'
+  - './smartgit_desktop.py -d -n && docker stop $(docker ps -q)'
   - docker images
