@@ -13,7 +13,7 @@ import sys
 import subprocess
 import time
 
-GROUP = "smartgit"
+APP = "smartgit"
 
 
 def parse_args(description):
@@ -31,8 +31,8 @@ def parse_args(description):
 
     parser.add_argument('-i', '--image',
                         help='The Docker image to use. ' +
-                        'The default is x11vnc/' + GROUP + '-desktop.',
-                        default="x11vnc/"+GROUP+"-desktop")
+                        'The default is x11vnc/' + APP + '-desktop.',
+                        default="x11vnc/"+APP+"-desktop")
 
     parser.add_argument('-t', '--tag',
                         help='Tag of the image. The default is latest. ' +
@@ -231,10 +231,10 @@ if __name__ == "__main__":
 
     if args.reset:
         subprocess.check_output(["docker", "volume", "rm", "-f",
-                                 GROUP+"_config"])
+                                 APP+"_config"])
 
     volumes = ["-v", pwd + ":" + docker_home + "/shared",
-               "-v", GROUP+"_config:" + docker_home + "/.config",
+               "-v", APP+"_config:" + docker_home + "/.config",
                "-v", homedir + "/.ssh" + ":" + docker_home + "/.ssh",
                "-v", homedir + "/.gitconfig" +
                ":" + docker_home + "/.gitconfig"]
@@ -256,7 +256,7 @@ if __name__ == "__main__":
     else:
         size = args.size
 
-    envs = ["--hostname", GROUP+"-desktop",
+    envs = ["--hostname", APP+"-desktop",
             "--env", "RESOLUT=" + size,
             "--env", "HOST_UID=" + uid]
 
