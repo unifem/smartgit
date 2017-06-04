@@ -24,6 +24,7 @@ RUN curl -O http://www.syntevo.com/static/smart/download/smartgit/smartgit-${SMA
     dpkg -i smartgit-${SMARTGIT_VER}.deb && \
     echo "@/usr/share/smartgit/bin/smartgit.sh" >> /home/$DOCKER_USER/.config/lxsession/LXDE/autostart && \
     rm -rf /tmp/* /var/tmp/* && \
+    mkdir -p $DOCHER_HOME/project && \
     chown -R $DOCKER_USER:$DOCKER_GROUP $DOCKER_HOME
 
 WORKDIR $DOCKER_HOME

@@ -41,7 +41,18 @@ After downloading the script, you can start the Docker image using the command
 ```
 python smartgit_desktop.py -p
 ```
-This will download and run the Docker image and then launch your default web browser to show the desktop environment. The `-p` option is optional, and it instructs the Python script to pull and update the image to the latest version.
+This will download and run the Docker image and then launch your default web browser to show the desktop environment. The `-p` option is optional, and it instructs the Python script to pull and update the image to the latest version. The work directory by default will be the shared directory.
+
+If you source code is in a Docker volume, e.g. "myproject", you can mount the volume to the `~/project` directory inside the container using the command
+```
+python smartgit_desktop.py -v myproject
+```
+and the work directory will be the data volume.
+
+For additional command-line options, use the command
+```
+python smartgit_desktop.py -h
+```
 
 ### Running the Docker Image Offline
 After you have download the Docker image using the `curl` and `python` commands above, you can run the image offline without internet connection using the following command:

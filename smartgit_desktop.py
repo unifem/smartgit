@@ -32,7 +32,7 @@ def parse_args(description):
     parser.add_argument('-i', '--image',
                         help='The Docker image to use. ' +
                         'The default is x11vnc/' + APP + '-desktop.',
-                        default="x11vnc" + APP + "-desktop")
+                        default="x11vnc/" + APP + "-desktop")
 
     parser.add_argument('-t', '--tag',
                         help='Tag of the image. The default is latest. ' +
@@ -58,6 +58,10 @@ def parse_args(description):
     parser.add_argument('-s', '--size',
                         help='Size of the screen. The default is to obtaion ' +
                         'the size of the current screen.',
+                        default="")
+
+    parser.add_argument('-v', '--volume',
+                        help='A data volume to be mounted to ~/project.',
                         default="")
 
     parser.add_argument('-n', '--no-browser',
@@ -239,6 +243,12 @@ if __name__ == "__main__":
                "-v", homedir + "/.gitconfig" +
                ":" + docker_home + "/.gitconfig"]
 
+    if args.volume:
+        volumes += ["-v", args.volume + ":" + docker_home + "/project",
+                    "-w", docker_home + "/project"]
+    else:
+        volumes += ["-w", docker_home + "/shared"]
+
     print("Starting up docker image...")
     if subprocess.check_output(["docker", "--version"]). \
             find(b"Docker version 1.") >= 0:
@@ -264,8 +274,7 @@ if __name__ == "__main__":
     subprocess.call(["docker", "run", "-d", rmflag, "--name", container,
                      "-p", "127.0.0.1:" + port_vnc + ":6080"] +
                     envs + volumes +
-                    ["-w", docker_home + "/shared",
-                     args.image, "startvnc.sh >> " +
+                    [args.image, "startvnc.sh >> " +
                      docker_home + "/.log/vnc.log"])
 
     wait_for_url = True
