@@ -14,6 +14,7 @@ ENV SMARTGIT_VER=17_0_3
 # Install Java
 RUN apt-get update && \
     apt-get install -q -y --no-install-recommends \
+        git \
         openjdk-8-jre-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
