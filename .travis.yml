@@ -5,6 +5,9 @@ language: python
 services: docker
 
 env:
+  global:
+    SMARTGIT_VER=17.0.4
+  matrix:
   - XVFB=1
   - XVFB=0
 
@@ -25,9 +28,12 @@ script:
   - docker --version
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
   # Build only if the commit range of a push contains Dockerfile or .travis.yml
-  - 'docker build --tag x11vnc/smartgit-desktop:16.04 --tag x11vnc/smartgit-desktop:latest . &&
+  - 'docker build --arg SMARTGIT_VER=$(echo $SMARTGIT_VER | sed -e 's/\./_/')
+                  --tag x11vnc/smartgit-desktop:latest
+                  --tag x11vnc/smartgit-desktop:$SMARTGIT_VER . &&
      docker push x11vnc/smartgit-desktop &&
      touch success'
   # Test script without launching webbrowser and push new image if successful
+  - docker run --rm -ti x11vnc/smartgit-desktop "ls project"
   - './smartgit_desktop.py -d -n && docker stop $(docker ps -q)'
   - docker images
