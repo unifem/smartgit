@@ -5,10 +5,11 @@ language: python
 services: docker
 
 env:
-  - XVFB=1 SMARTGIT_VER=17.0.3
-  - XVFB=0 SMARTGIT_VER=17.0.3
-  - XVFB=1 SMARTGIT_VER=17.0.4
-  - XVFB=0 SMARTGIT_VER=17.0.4
+  global:
+    SMARTGIT_VER=17.0.4
+  matrix:
+  - XVFB=1
+  - XVFB=0
 
 before_install:
   # Install latest version of docker-ce
