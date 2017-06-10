@@ -9,7 +9,7 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 USER root
 WORKDIR /tmp
 
-ARG SMARTGIT_VER=17_0_4
+ARG SMARTGIT_VER=17.0.4
 
 # Install Java
 RUN apt-get update && \
@@ -20,8 +20,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install smartgit
-RUN curl -O http://www.syntevo.com/static/smart/download/smartgit/smartgit-${SMARTGIT_VER}.deb && \
-    dpkg -i smartgit-${SMARTGIT_VER}.deb && \
+RUN curl -O http://www.syntevo.com/static/smart/download/smartgit/smartgit-${SMARTGIT_VER//\./_}.deb && \
+    dpkg -i smartgit-${SMARTGIT_VER//\./_}.deb && \
     echo "@/usr/share/smartgit/bin/smartgit.sh" >> /home/$DOCKER_USER/.config/lxsession/LXDE/autostart && \
     rm -rf /tmp/* /var/tmp/* && \
     mkdir -p $DOCKER_HOME/project && \
