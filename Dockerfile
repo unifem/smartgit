@@ -24,6 +24,8 @@ RUN /bin/bash -c 'curl -O http://www.syntevo.com/static/smart/download/smartgit/
     dpkg -i smartgit-${SMARTGIT_VER//\./_}.deb && \
     echo "@/usr/share/smartgit/bin/smartgit.sh" >> /home/$DOCKER_USER/.config/lxsession/LXDE/autostart && \
     rm -rf /tmp/* /var/tmp/* && \
+    echo "mkdir -p $DOCKER_HOME/.config/smartgit" >> $DOCKER_HOME/.profile && \
+    ln -s -f $DOCKER_HOME/.config/smartgit $DOCKER_HOME/.smartgit && \
     chown -R $DOCKER_USER:$DOCKER_GROUP $DOCKER_HOME'
 
 WORKDIR $DOCKER_HOME
