@@ -27,7 +27,6 @@ before_script:
 script:
   - docker --version
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
-  # Build only if the commit range of a push contains Dockerfile or .travis.yml
   - 'docker build --build-arg SMARTGIT_VER=$SMARTGIT_VER
                   --tag x11vnc/smartgit-desktop:latest
                   --tag x11vnc/smartgit-desktop:$SMARTGIT_VER . &&
