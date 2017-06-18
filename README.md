@@ -25,7 +25,6 @@ Download the Docker Community Edition for free at https://www.docker.com/communi
 sudo adduser $USER docker
 ```
 Then, log out and log back in before you can use Docker.
-
 ## Running the Docker Image
 To run the Docker image, first download the script [`smartgit_desktop.py`](https://raw.githubusercontent.com/x11vnc/smartgit-desktop/master/smartgit_desktop.py)
 and save it to the working directory where you will store your codes and data. You can download the script using command line: On Windows, start `Windows PowerShell`, use the `cd` command to change to the working directory where you will store your codes and data, and then run the following command:
@@ -75,10 +74,10 @@ Alternatively, you can also use the "native" browsers on different platforms.
 - On Linux, the default browser *Firefox* does not hide its address bar in its native full-screen mode. You are recommended to use *Google Chrome* or *Chromium browser* instead. However, you can use *Firefox* for a full-screen viewing mode by clicking on the `Fullscreen` button in the left sidebar of Docker desktop environment. However, this is not recommended for day-to-day use, because *Firefox* would exit this full-screen mode whenever you press `Esc`, which may happen quite often.
 
 If your Docker desktop environment started automatically in a non-recommended browser, you can copy and paste the URL into a recommended browser.
-
 ## Tips and Tricks
-1. By default, Docker uses two CPU cores and 2GB of memory on Mac and Windows. If you want to run large jobs, go to the `Advanced` tab in `Settings` (or `Preferences` for Mac) and increase the amount of memory dedicated to Docker.
-2. When using the Docker image, the files under `$HOME/.config`, `$HOME/.ssh`,  `$HOME/shared` and any other
-directory that you might have mounted explicitly are persistent. Any change to files in other directories will be lost when you stop the Docker image. `$HOME/.config` contains the configuration files of the desktop environment. `$HOME/shared` maps to the working directory on the host where you started the docker image.
-3. The `$HOME/.ssh` directory in the Docker image maps to the `.ssh` directory on your host computer. This is particularly convenient for you to use your ssh-keys for authentications with git repositories on github.com or bitbucket.org. To use your ssh-keys, run the `ssh-add` in a terminal to add your keys to the ssh-agent.
-4. You can copy and paste between the host and the Docker image through the `Clipboard` box in the left toolbar, which is synced automatically with the clipboard of the Docker image. To copy from the Docker image to the host, first select the text in the Docker image, and then go to the `Clipboard` box to copy. To copy from host to the Docker image, first paste the text into the `Clipboard` box, and then paste the text in the Docker image.
+1. By default, Docker uses two CPU cores and 2GB of memory on Mac and Windows. If you want to run large jobs, you can increase the amount of memory or the number of cores dedicated to Docker. Just click on the Docker icon in the system tray, select `Settings` (or `Preferences` for Mac) and then select the `Advanced` tab to adjust the settings.
+2. When using the Docker desktop, the files under `$HOME/.config`, `$HOME/.ssh`,  `$HOME/shared` and any other
+directory that you might have mounted explicitly are persistent. Any change to files in other directories will be lost when the Docker container stops. Use `$HOME/.config` to store the configuration files of the desktop environment. `$HOME/shared` maps to the working directory on the host, and you are recommended to use it or a mounted project directory to store codes and data.
+3. The `$HOME/.ssh` directory in the Docker container maps to the `.ssh` directory on your host computer. This is particularly convenient for you to use your ssh-keys for authentications with git repositories (such as github or bitbucket). To use your ssh keys, run the `ssh-add` in a terminal to add your keys to the ssh-agent.
+4. You can copy and paste between the host and the Docker desktop through the `Clipboard` box in the left toolbar, which is synced automatically with the clipboard of the Docker desktop. To copy from the Docker desktop to the host, first, select the text in the Docker desktop, and then go to the `Clipboard` box to copy. To copy from host to the Docker desktop, first, paste the text into the `Clipboard` box, and then paste the text in the Docker desktop.
+5. On Mac laptops, the clock in Docker would lag when your laptop goes to sleep and then wakes up. You can resolve this issue by either restarting Docker or simply installing [sync-docker-time](https://github.com/x11vnc/sync-docker-time).
