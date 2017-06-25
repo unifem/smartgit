@@ -244,7 +244,7 @@ if __name__ == "__main__":
                                  "[[ $DOCKER_HOME/.config/git/config -nt " +
                                  "$DOCKER_HOME/.gitconfig_host ]] || " +
                                  "(mkdir -p $DOCKER_HOME/.config/git && " +
-                                 "cp $DOCKER_HOME/.gitconfig_host " +
+                                 "sudo cp $DOCKER_HOME/.gitconfig_host " +
                                  "$DOCKER_HOME/.config/git/config)"])
 
     if args.volume:
