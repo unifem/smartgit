@@ -1,12 +1,11 @@
 os: linux
 dist: trusty
-sudo: required
 language: python
 services: docker
 
 env:
   global:
-    SMARTGIT_VER=17.0.4
+  - SMARTGIT_VER=17.0.4
   matrix:
   - XVFB=1
   - XVFB=0
