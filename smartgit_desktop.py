@@ -228,8 +228,8 @@ if __name__ == "__main__":
     user = docker_home[6:]
 
     if args.reset:
-        subprocess.check_output(["docker", "volume", "rm", "-f",
-                                 APP + "_config"])
+        subprocess.call(["docker", "volume", "rm", "-f",
+                         APP + "_config"])
 
     volumes = ["-v", pwd + ":" + docker_home + "/shared",
                "-v", APP + "_config:" + docker_home + "/.config",
@@ -237,15 +237,15 @@ if __name__ == "__main__":
 
     # Copy .gitconfig if exists on host and is newer than that in image
     if os.path.isfile(homedir + "/.gitconfig"):
-        subprocess.check_output(["docker", "run", "--rm", '-t'] + volumes +
-                                ["-v", homedir + "/.gitconfig" +
-                                 ":" + docker_home + "/.gitconfig_host",
-                                 args.image,
-                                 "[[ $DOCKER_HOME/.config/git/config -nt " +
-                                 "$DOCKER_HOME/.gitconfig_host ]] || " +
-                                 "(mkdir -p $DOCKER_HOME/.config/git && " +
-                                 "sudo cp $DOCKER_HOME/.gitconfig_host " +
-                                 "$DOCKER_HOME/.config/git/config)"])
+        subprocess.call(["docker", "run", "--rm"] + volumes +
+                        ["-v", homedir + "/.gitconfig" +
+                         ":" + docker_home + "/.gitconfig_host",
+                         args.image,
+                         "[[ $DOCKER_HOME/.config/git/config -nt " +
+                         "$DOCKER_HOME/.gitconfig_host ]] || " +
+                         "(mkdir -p $DOCKER_HOME/.config/git && " +
+                         "sudo cp $DOCKER_HOME/.gitconfig_host " +
+                         "$DOCKER_HOME/.config/git/config)"])
 
     if args.volume:
         volumes += ["-v", args.volume + ":" + docker_home + "/project",
