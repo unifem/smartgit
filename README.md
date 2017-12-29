@@ -1,5 +1,5 @@
 # Docker Image for Smartgit
-This Docker image provides the Ubuntu 16.04 environment with X Windows with Smartgit. It is a demonstration of using x11vnc/desktop for some powerful applications. The X Windows will display in your web browser in full-screen mode. You can use this Docker image on 64-bit Linux, Mac or Windows. It allows you to use the same programming environment regardless which OS you are running on your laptop or desktop.
+This Docker image provides the Ubuntu 17.10 environment with X Windows with Smartgit. It is a demonstration of using x11vnc/desktop for some powerful applications. The X Windows will display in your web browser in full-screen mode. You can use this Docker image on 64-bit Linux, Mac or Windows. It allows you to use the same programming environment regardless which OS you are running on your laptop or desktop.
 
 [![Build Status](https://travis-ci.org/x11vnc/smartgit-desktop.svg?branch=master)](https://travis-ci.org/x11vnc/smartgit-desktop) [![](https://images.microbadger.com/badges/image/x11vnc/smartgit-desktop.svg)](https://microbadger.com/images/x11vnc/smartgit-desktop)
 
