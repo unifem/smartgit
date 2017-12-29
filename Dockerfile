@@ -1,4 +1,4 @@
-# Builds a Docker image with Ubuntu 16.04, g++-5.4, and Smartgit
+# Builds a Docker image with Ubuntu 17.10, g++-5.4, and Smartgit
 #
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
@@ -9,7 +9,7 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 USER root
 WORKDIR /tmp
 
-ARG SMARTGIT_VER=17.1.2
+ARG SMARTGIT_VER=17.1.3
 ADD image/home $DOCKER_HOME/
 
 # Install Java
