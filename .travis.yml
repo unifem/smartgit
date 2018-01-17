@@ -15,7 +15,4 @@ script:
                   --tag x11vnc/smartgit-desktop:$SMARTGIT_VER . &&
      docker push x11vnc/smartgit-desktop &&
      touch success'
-  # Test script without launching webbrowser and push new image if successful
-  - './smartgit_desktop.py -d -n -v test_project && docker stop $(docker ps -q)'
-  - './smartgit_desktop.py -d -n && docker stop $(docker ps -q)'
   - docker images
