@@ -9,7 +9,7 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 USER root
 WORKDIR /tmp
 
-ARG SMARTGIT_VER=17.1.4
+ARG SMARTGIT_VER=19.1.0
 ADD image/home $DOCKER_HOME/
 
 # Install Java

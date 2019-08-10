@@ -5,7 +5,7 @@ services: docker
 
 env:
   global:
-  - SMARTGIT_VER=17.1.4
+  - SMARTGIT_VER=19.1.0
 
 script:
   - docker --version
